@@ -6,6 +6,9 @@
 
 @section('content')
     <div class="container mt-5">
+        <div class="row my-5">
+            <h2 class="text-center">Perfil de usuario</h2>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 @if ($errors->any())
