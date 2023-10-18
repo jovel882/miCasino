@@ -15,8 +15,9 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 
-class ValidateIsNew implements ShouldQueue
+class ValidateIsNew implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -28,6 +29,14 @@ class ValidateIsNew implements ShouldQueue
     public function __construct(public array $data)
     {
         //
+    }
+
+    /**
+     * The unique ID of the job.
+     */
+    public function uniqueId(): string
+    {
+        return hash('sha256', implode(';', $this->data));
     }
 
     /**
