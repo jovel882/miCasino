@@ -13,7 +13,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('url') }}">
-					<i class="fa-solid fa-people-group display-1"></i>
+                    <i class="fa-solid fa-people-group display-1"></i>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                  data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -55,12 +55,12 @@
                                 </a>
                             </div>
                             <div class="col-md-4 text-center text-md-end py-3">
-                                <a href="https://github.com/jovel882" target="_blank" class="text-info">
+                                <a href="https://github.com/jovel882" target="_blank" class="text-info" rel="noopener">
                                     <i class="fa-brands fa-square-github display-6"></i>
                                 </a>
                             </div>
                             <div class="col-md-4 text-center text-md-end py-3">
-                                <a href="https://www.linkedin.com/in/jovel882/" target="_blank" class="text-info">
+                                <a href="https://www.linkedin.com/in/jovel882/" target="_blank" class="text-info" rel="noopener">
                                     <i class="fa-brands fa-linkedin display-6"></i>
                                 </a>
                             </div>
