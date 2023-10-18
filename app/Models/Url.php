@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Url extends Model
 {
     use HasFactory;
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
 
     public function name(): BelongsTo
     {

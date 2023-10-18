@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;
-use Illuminate\Http\Request;
+use App\Jobs\ValidateIsNew;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ValidateUrlRequest;
 use App\Http\Requests\ValidateRedirectRequest;
@@ -13,13 +13,17 @@ class UrlController extends Controller
 {
     public function show(ValidateUrlRequest $request): View
     {
-        return view('url', $request->only([
+        $data = $request->only([
             'nombre',
             'apellidos',
             'telefono',
             'correo',
             'imagen',
-        ]));
+        ]);
+
+        $this->validateIsNew($data);
+
+        return view('url', $data);
     }
 
     public function upload(ValidateUrlGenerateRequest $request)
@@ -55,5 +59,12 @@ class UrlController extends Controller
     public function redirect(ValidateRedirectRequest $request)
     {
         return view('redirect', $request->only(['url']));
+    }
+
+    protected function validateIsNew(array $data): void
+    {
+        if (count(array_filter($data)) === 5) {
+            ValidateIsNew::dispatch($data);
+        }
     }
 }
