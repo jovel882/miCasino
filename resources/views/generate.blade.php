@@ -105,10 +105,10 @@
             if (apellidosInput.value.trim() === '') {
                 apellidosInput.classList.add('is-invalid');
                 invalid = true;
-                document.getElementById('nombreErrorMessage').textContent = 'El campo Apellidos es obligatorio.';
+                document.getElementById('apellidosErrorMessage').textContent = 'El campo Apellidos es obligatorio.';
             } else {
                 document.getElementById('apellidosErrorMessage').textContent = '';
-                nombreInput.classList.remove('is-invalid');
+                apellidosInput.classList.remove('is-invalid');
             }
 
             if (!telefonoPattern.test(telefonoInput.value)) {
@@ -117,7 +117,7 @@
                 document.getElementById('telefonoErrorMessage').textContent = 'El numero de telefono debe contener solo digitos y minimo 10 digitos.';
             } else {
                 document.getElementById('telefonoErrorMessage').textContent = '';
-                nombreInput.classList.remove('is-invalid');
+                telefonoInput.classList.remove('is-invalid');
             }
 
             if (emailInput.value.trim() === '' || !isValidEmail(emailInput.value)) {
@@ -126,7 +126,7 @@
                 document.getElementById('emailErrorMessage').textContent = 'El correo debe ser valido.';
             } else {
                 document.getElementById('emailErrorMessage').textContent = '';
-                nombreInput.classList.remove('is-invalid');
+                emailInput.classList.remove('is-invalid');
             }
 
             if (isValidImage(imagenInput.files, allowedExtensions)) {
