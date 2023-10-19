@@ -675,6 +675,31 @@
                         <br/>
                         <br/>
 
+            + Se implemento un Job [ValidateIsNew](app/Jobs/ValidateIsNew.php) que se encarga de validar si los datos que se ingresan en el módulo dinámico son únicos y los procesa para su almacenamiento y posterior notificación, esto ofrece entre muchas ventajas:
+                
+                <br/>
+                <br/>
+                
+                + Aislar toda esta lógica y manejarla de manera asíncrona (en segundo plano) en una cola de trabajo mejorando considerablemente el performance
+
+                <br/>
+                <br/>
+
+                + Permite procesamiento en paralelo y por ende poder atender más solicitudes.
+
+                <br/>
+                <br/>
+
+                + Optimizar los recursos al evitar reprocesos identificando de manera única cada uno de los intentos de validación de esos datos.
+
+                <br/>
+                <br/>
+
+                + Ofrece una mejor experiencia de usuario ya que no debe esperar que todo este proceso de validación termine para acceder a la vista.
+
+                <br/>
+                <br/>
+
 ## :airplane: Desplegar.
 
 <br/>
