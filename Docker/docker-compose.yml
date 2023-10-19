@@ -1,0 +1,56 @@
+version: '3'
+services:
+  proxyC:
+    image: jwilder/nginx-proxy
+    container_name: proxyC
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    restart: always
+    privileged: true
+    networks:
+      - local_containers
+  mdb_micasino:
+    image: mariadb:10.3.38
+    container_name: mdb_micasino
+    ports:
+      - "3396:3306"
+    env_file: 
+      - .env
+    networks:
+      - local_containers
+  mh_micasino:
+    image: mailhog/mailhog
+    container_name: mh_micasino
+    logging:
+      driver: 'none'  # disable saving logs
+    ports:
+      - 1025:1025 # smtp server
+      - 8025:8025 # web ui
+    environment:
+      - VIRTUAL_HOST=mail.micasino.test
+    networks:
+      - local_containers
+  micasino:
+    build:
+      context: ../.
+      dockerfile: Dockerfile
+    image: jovel882/micasino:1.0
+    container_name: micasino
+    env_file:
+      - .env
+    environment:
+      - SKIP_COMPOSER=1
+      - VIRTUAL_HOST=micasino.test
+    networks:
+      - local_containers
+    depends_on:
+      - proxyC
+      - mdb_micasino
+      - mh_micasino
+    privileged: true
+networks:
+  local_containers:
+    name: local_containers

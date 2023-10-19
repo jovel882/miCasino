@@ -1,6 +1,8 @@
 <?php
 
+use App\Helpers\UploadHelper;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UrlController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(UrlController::class)->group(function () {
+    Route::get('/', 'show')
+        ->name('url');
+    Route::post('/url', 'upload')
+        ->name('upload');
+    Route::get('/redirect', 'redirect')
+        ->name('redirect');
 });
+
+Route::view('/generate', 'generate', ['maxUploadSize' => UploadHelper::maxUploadSize()])
+    ->name('generate');
